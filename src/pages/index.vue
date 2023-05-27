@@ -8,6 +8,7 @@ const buttons: Button[] = [
     alt: '制作实录',
     hoverImage: '/zelda/button1-onclick.png',
     voice: '/zelda/voice/click.mp3',
+    target: 'record',
   },
   {
     id: 2,
@@ -15,6 +16,7 @@ const buttons: Button[] = [
     alt: '人物设定',
     hoverImage: '/zelda/button2-onclick.png',
     voice: '/zelda/voice/click.mp3',
+    target: 'people',
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ const buttons: Button[] = [
     alt: '历代作品',
     hoverImage: '/zelda/button3-onclick.png',
     voice: '/zelda/voice/click.mp3',
+    target: 'history',
   },
   {
     id: 4,
@@ -29,6 +32,7 @@ const buttons: Button[] = [
     alt: '壁纸下载',
     hoverImage: '/zelda/button4-onclick.png',
     voice: '/zelda/voice/click.mp3',
+    target: 'wallpaper',
   },
 ]
 function handleMouseOver(button: Button) {
@@ -64,11 +68,13 @@ const reactiveButtons = ref(buttons)
           v-for="button, id in reactiveButtons" :key="id" class="button" @mouseenter="() => handleMouseOver(button)"
           @mouseout="() => handleMouseLeave(button)" @click="playSound()"
         >
-          <img
-            :key="button.id"
-            :src="button.image"
-            :alt="button.alt"
-          >
+          <router-link :to="`/${button.target}`" title="Record">
+            <img
+              :key="button.id"
+              :src="button.image"
+              :alt="button.alt"
+            >
+          </router-link>
           <audio id="click-sound" :src="button.voice" />
         </div>
       </div>

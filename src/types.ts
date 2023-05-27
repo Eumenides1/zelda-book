@@ -4,4 +4,5 @@ export interface Button {
   alt: string
   hoverImage: string
   voice: string
+  target: string
 }
