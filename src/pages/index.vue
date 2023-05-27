@@ -1,7 +1,50 @@
-<script>
-export default {
+<script lang="ts" setup>
+import type { Button } from '~/types'
 
+const buttons: Button[] = [
+  {
+    id: 1,
+    image: '../../public/zelda/button1.png',
+    alt: '制作实录',
+    hoverImage: '../../public/zelda/button1-onclick.png',
+    voice: '../../public/zelda/voice/click.mp3',
+  },
+  {
+    id: 2,
+    image: '../../public/zelda/button2.png',
+    alt: '人物设定',
+    hoverImage: '../../public/zelda/button2-onclick.png',
+    voice: '../../public/zelda/voice/click.mp3',
+  },
+  {
+    id: 3,
+    image: '../../public/zelda/button3.png',
+    alt: '历代作品',
+    hoverImage: '../../public/zelda/button3-onclick.png',
+    voice: '../../public/zelda/voice/click.mp3',
+  },
+  {
+    id: 4,
+    image: '../../public/zelda/button4.png',
+    alt: '壁纸下载',
+    hoverImage: '../../public/zelda/button4-onclick.png',
+    voice: '../../public/zelda/voice/click.mp3',
+  },
+]
+function handleMouseOver(button: Button) {
+  button.image = button.hoverImage
 }
+function handleMouseLeave(button: Button) {
+  button.image = button.image.replace('-onclick', '')
+}
+
+function playSound() {
+  const audio = document.getElementById('click-sound')! as HTMLAudioElement
+  audio.play()
+}
+
+// 创建可响应式的按钮数组
+const reactiveButtons = ref(buttons)
 </script>
 
 <template>
@@ -17,10 +60,17 @@ export default {
         <img class="title-image" src="../../public/zelda/title.png">
       </div>
       <div class="buttons">
-        <img class="button" src="../../public/zelda/button1.png" alt="制作实录">
-        <img class="button" src="../../public/zelda/button2.png" alt="人物设定">
-        <img class="button" src="../../public/zelda/button3.png" alt="历代作品">
-        <img class="button" src="../../public/zelda/button4.png" alt="壁纸下载">
+        <div
+          v-for="button, id in reactiveButtons" :key="id" class="button" @mouseenter="() => handleMouseOver(button)"
+          @mouseout="() => handleMouseLeave(button)" @click="playSound()"
+        >
+          <img
+            :key="button.id"
+            :src="button.image"
+            :alt="button.alt"
+          >
+          <audio id="click-sound" :src="button.voice" />
+        </div>
       </div>
     </div>
   </div>
@@ -59,7 +109,6 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  z-index: 1;
   transform-style: preserve-3d; /* 添加此属性以保留3D变换效果 */
 }
 
@@ -97,6 +146,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 1;
 }
 
 .buttons {
@@ -109,21 +159,5 @@ export default {
   margin: 0 10px; /* 调整按钮之间的间距 */
   width: 15%; /* 设置按钮宽度为20% */
   height: auto; /* 根据宽度自适应高度 */
-}
-
-.buttons .button:hover {
-  background-image: url("../../public/zelda/button1-onclick.png");
-}
-
-.buttons .button:nth-child(2):hover {
-  background-image: url("../../public/zelda/button2-onclick.png");
-}
-
-.buttons .button:nth-child(3):hover {
-  background-image: url("../../public/zelda/button3-onclick.png");
-}
-
-.buttons .button:nth-child(4):hover {
-  background-image: url("../../public/zelda/button4-onclick.png");
 }
 </style>
