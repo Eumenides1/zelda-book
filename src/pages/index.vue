@@ -11,24 +11,24 @@ const buttons: Button[] = [
   },
   {
     id: 2,
-    image: '../../public/zelda/button2.png',
+    image: '/zelda/button2.png',
     alt: '人物设定',
-    hoverImage: '../../public/zelda/button2-onclick.png',
-    voice: '../../public/zelda/voice/click.mp3',
+    hoverImage: '/zelda/button2-onclick.png',
+    voice: '/zelda/voice/click.mp3',
   },
   {
     id: 3,
-    image: '../../public/zelda/button3.png',
+    image: '/zelda/button3.png',
     alt: '历代作品',
-    hoverImage: '../../public/zelda/button3-onclick.png',
-    voice: '../../public/zelda/voice/click.mp3',
+    hoverImage: '/zelda/button3-onclick.png',
+    voice: '/zelda/voice/click.mp3',
   },
   {
     id: 4,
-    image: '../../public/zelda/button4.png',
+    image: '/zelda/button4.png',
     alt: '壁纸下载',
-    hoverImage: '../../public/zelda/button4-onclick.png',
-    voice: '../../public/zelda/voice/click.mp3',
+    hoverImage: '/zelda/button4-onclick.png',
+    voice: '/zelda/voice/click.mp3',
   },
 ]
 function handleMouseOver(button: Button) {
