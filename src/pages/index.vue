@@ -4,10 +4,10 @@ import type { Button } from '~/types'
 const buttons: Button[] = [
   {
     id: 1,
-    image: '../../public/zelda/button1.png',
+    image: '/zelda/button1.png',
     alt: '制作实录',
-    hoverImage: '../../public/zelda/button1-onclick.png',
-    voice: '../../public/zelda/voice/click.mp3',
+    hoverImage: '/zelda/button1-onclick.png',
+    voice: '/zelda/voice/click.mp3',
   },
   {
     id: 2,
